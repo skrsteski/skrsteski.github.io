@@ -127,7 +127,7 @@ const CVSection = () => {
       organization: "Freelancer",
       period: "Jan 2023 - Apr 2023",
       location: "Skopje, North Macedonia",
-      description: "Developed a deep learning model for AFib detection, improving diagnostic accuracy compared to the client's existing system.",
+      description: "Developed a deep learning model for AFib detection, improving diagnostic accuracy compared to the client's existing system.\n-Created a software tool for automatic invoice generation.",
       collaborations: ["Freelancer"]
     },
     {
@@ -457,7 +457,7 @@ const CVSection = () => {
                         École Polytechnique Fédérale de Lausanne
                       </a>
                       <p className="text-sm font-academic text-muted-foreground">
-                        GPA: 5.68/6.00 - Top 10% · 120 ECTS
+                        GPA: 5.76/6.00 - Top 10% · 120 ECTS
                       </p>
                     </div>
                   </div>
