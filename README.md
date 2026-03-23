@@ -1,5 +1,3 @@
-# stefanstud.github.io
-
 Personal website built with [Hugo](https://gohugo.io).
 
 ## run locally
