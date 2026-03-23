@@ -1,0 +1,11 @@
+baseURL = 'https://skrsteski.github.io/'
+languageCode = 'en-us'
+title = 'Stefan Krsteski'
+
+[params]
+  description = "Personal website"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

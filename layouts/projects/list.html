@@ -1,0 +1,143 @@
+{{ define "main" }}
+<div class="page-narrow">
+<h2>Projects</h2>
+<p class="projects-sub">Some selected projects - more on <a href="https://github.com/skrsteski" target="_blank">GitHub</a>.</p>
+
+<div class="project-grid">
+  <div class="project-card" data-index="0">
+    <img src="/projects/images/matrix_factorization.png" alt="Cold-Start Recommenders">
+    <div class="project-card-body">
+      <div class="project-card-title">Cold-Start Mitigation in Recommenders</div>
+      <p class="project-card-desc">Matrix factorization with log-scaled interpolation to estimate user bias from activity level.</p>
+      <div class="pub-links">[<a href="https://github.com/skrsteski/book-recommender-systems" target="_blank">code</a> | <a href="/projects/pdfs/matrix_factorization.pdf" target="_blank">report</a>]</div>
+    </div>
+  </div>
+
+  <div class="project-card" data-index="1">
+    <img src="/projects/images/3po.png" alt="φ-3PO AI Tutor">
+    <div class="project-card-body">
+      <div class="project-card-title">φ-3PO: An AI-Tutor System</div>
+      <p class="project-card-desc">Fine-tuned an LLM with human feedback (DPO) from EPFL exam data, surpassing GPT-4 on STEM questions.</p>
+      <div class="pub-links">[<a href="https://github.com/skrsteski/Phi-3PO" target="_blank">code</a> | <a href="/projects/pdfs/phi_3po.pdf" target="_blank">report</a> | <a href="https://huggingface.co/StefanKrsteski/Phi-3-mini-4k-instruct-DPO-EPFL" target="_blank">model</a>]</div>
+    </div>
+  </div>
+
+  <div class="project-card" data-index="2">
+    <img src="/projects/images/ecoroutes.png" alt="EcoRoutes">
+    <div class="project-card-body">
+      <div class="project-card-title">EcoRoutes: The Real Cost of Travel</div>
+      <p class="project-card-desc">Interactive web app comparing CO₂ emissions across transportation modes between European cities.</p>
+      <div class="pub-links">[<a href="https://github.com/skrsteski/EcoRoutes" target="_blank">code</a> | <a href="/projects/pdfs/ecoroutes.pdf" target="_blank">report</a> | <a href="https://com-480-data-visualization.github.io/com-480-project-ecoroutes/home" target="_blank">demo</a>]</div>
+    </div>
+  </div>
+
+  <div class="project-card" data-index="3">
+    <img src="/projects/images/road_segmentation.png" alt="Road Segmentation">
+    <div class="project-card-body">
+      <div class="project-card-title">Satellite Image Road Segmentation</div>
+      <p class="project-card-desc">Deep transfer learning and morphological operations to segment roadways from satellite imagery.</p>
+      <div class="pub-links">[<a href="https://github.com/skrsteski/road-segmentation" target="_blank">code</a> | <a href="/projects/pdfs/road_segmentation.pdf" target="_blank">report</a>]</div>
+    </div>
+  </div>
+
+  <div class="project-card" data-index="4">
+    <img src="/projects/images/diabetic.png" alt="Diabetic Retinopathy">
+    <div class="project-card-body">
+      <div class="project-card-title">Diabetic Retinopathy Detection</div>
+      <p class="project-card-desc">Custom Siamese architecture using both eyes to improve diagnostic predictions from retinal fundus images.</p>
+      <div class="pub-links">[<a href="https://github.com/skrsteski/diabetic-retinopathy-detection" target="_blank">code</a> | <a href="/projects/pdfs/diabetic.pdf" target="_blank">report</a>]</div>
+    </div>
+  </div>
+
+  <div class="project-card" data-index="5">
+    <img src="/projects/images/gnn.png" alt="GNN">
+    <div class="project-card-body">
+      <div class="project-card-title">GNN for Chemical Mutagenicity</div>
+      <p class="project-card-desc">From-scratch graph neural networks for mutagenicity prediction, from basic GCNs to attention-based architectures.</p>
+      <div class="pub-links">[<a href="https://github.com/skrsteski/GNN-graph-classification" target="_blank">code</a> | <a href="/projects/pdfs/gnn.pdf" target="_blank">report</a>]</div>
+    </div>
+  </div>
+
+  <div class="project-card" data-index="6">
+    <img src="/projects/images/movies_analysis.jpg" alt="Money Mov(i)es">
+    <div class="project-card-body">
+      <div class="project-card-title">Money Mov(i)es</div>
+      <p class="project-card-desc">What makes a movie successful? Exploratory data analysis on film industry economics.</p>
+      <div class="pub-links">[<a href="https://github.com/skrsteski/movies-analysis" target="_blank">code</a> | <a href="https://epfl-ada.github.io/ada-2023-project-fivefrenchspeakingpeoplenocap/" target="_blank">data story</a>]</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Modal -->
+<div class="pub-modal" id="projModal">
+  <div class="pub-modal-content">
+    <div class="pub-modal-header">
+      <button class="pub-modal-close" id="projClose">&times;</button>
+    </div>
+    <h3 class="pub-modal-title" id="projModalTitle"></h3>
+    <img class="proj-modal-img" id="projModalImg" alt="">
+    <p class="pub-modal-abstract" id="projModalDesc"></p>
+    <div class="pub-modal-links" id="projModalLinks"></div>
+    <div class="pub-modal-nav">
+      <button class="pub-nav-btn prev" id="projPrev"><span class="nav-arrow">&larr;</span><span class="nav-label" id="projPrevLabel"></span></button>
+      <button class="pub-nav-btn next" id="projNext"><span class="nav-arrow">&rarr;</span><span class="nav-label" id="projNextLabel"></span></button>
+    </div>
+  </div>
+</div>
+
+<script>
+const descriptions = [
+  "Personalized recommendations are an essential part of modern online platforms. Applications such as Spotify and Netflix use recommendation systems to deliver tailored content and enhance user satisfaction. In this project, we developed a book recommendation system using matrix factorization augmented with user offsets and linear layers with skip connections. User offsets were included specifically to address the cold-start problem, which occurs when new users lack interaction data. We observed that cold users tend to give higher ratings than active users, biasing predictions if left unaddressed. Our approach accounts for this disparity and ensures fair representation across user activity levels.",
+  "The increase in educational attainment worldwide comes with demands for novel tools to be used by students and teachers. Language models provide a great opportunity in this respect, but the technology must be handled carefully. To facilitate the adoption of language models in this key domain, we design multiple extensions of a model from the Phi-3 family, originally developed by Microsoft. We call the collection of our extensions φ-3PO. We fine-tune Phi-3 using DPO on a carefully curated list of datasets, including data from the students taking the MNLP course. We apply two techniques to further fine-tune the model to improve its performance on multiple-choice questions, including Chain-of-Thought prompting and Supervised Fine-Tuning. We compress the model using the GPTQ quantization technique. The 8-bit version of the model retains the original performance while halving the size. We also design a RAG system by gathering a collection of STEM-related factual data and employing a state-of-the-art embedding model. Overall, our models consistently perform well on the tasks they were designed for.",
+  "EcoRoutes is an interactive web application that enables users to compare CO₂ emissions across different transportation modes and routes between European cities. The tool promotes data-driven sustainable travel decisions by visualizing the environmental cost of different journey options, helping users make more informed choices about how they travel.",
+  "Road segmentation is a key challenge in computer vision, with important applications in driver assistance, traffic surveillance, and vehicle guidance. In this project, we developed a model to accurately segment roads from satellite images using U-Net and DeepLabV3 architectures. We enriched our primary dataset with two external datasets and applied preprocessing, normalization, data augmentation, and postprocessing to improve performance. Our top-performing model achieved an F1-score of 0.923, demonstrating the effectiveness of combining deep transfer learning with careful data processing for satellite image analysis.",
+  "Diabetic retinopathy (DR) is one of the most common eye conditions among diabetic patients, and timely detection is crucial for preventing vision loss. Traditional diagnosis relies on manual examination of retinal images by ophthalmologists, which is time-consuming and subject to variability. This project develops a deep learning algorithm for automated DR grading from retinal fundus images. We experiment with multiple pretrained models via transfer learning, reproduce BiRA-Net, and propose a Siamese-like architecture that trains on pairs of eyes, leveraging the fact that diabetes typically affects both eyes.",
+  "In biomedicine, understanding molecular connections is crucial for predicting how compounds behave in the body. The MUTAG dataset represents chemical compounds as graphs, where nodes denote atoms and edges represent chemical bonds, labeled as mutagenic or non-mutagenic. In this project, we built graph neural networks from scratch to classify these molecular graphs, exploring architectures ranging from basic Graph Convolutional Networks (GCNs) to GraphSAGE and attention-based convolutions, with multiple methods for incorporating edge features into node representations.",
+  "What makes a movie successful? This project explores that question through exploratory data analysis on film industry economics, examining the relationship between budgets, revenues, genres, and audience reception across thousands of films."
+];
+
+const cards = document.querySelectorAll('.project-card[data-index]');
+const modal = document.getElementById('projModal');
+const modalTitle = document.getElementById('projModalTitle');
+const modalImg = document.getElementById('projModalImg');
+const modalDesc = document.getElementById('projModalDesc');
+const modalLinks = document.getElementById('projModalLinks');
+const prevLabel = document.getElementById('projPrevLabel');
+const nextLabel = document.getElementById('projNextLabel');
+let current = 0;
+
+function openModal(i) {
+  current = i;
+  const card = cards[i];
+  modalTitle.textContent = card.querySelector('.project-card-title').textContent;
+  modalImg.src = card.querySelector('img').src;
+  modalDesc.textContent = descriptions[i];
+  modalLinks.innerHTML = card.querySelector('.pub-links').innerHTML;
+  const prevIdx = (i - 1 + cards.length) % cards.length;
+  const nextIdx = (i + 1) % cards.length;
+  prevLabel.textContent = cards[prevIdx].querySelector('.project-card-title').textContent;
+  nextLabel.textContent = cards[nextIdx].querySelector('.project-card-title').textContent;
+  modal.classList.add('active');
+}
+
+cards.forEach(card => {
+  card.style.cursor = 'pointer';
+  card.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A') return;
+    openModal(parseInt(card.dataset.index));
+  });
+});
+
+document.getElementById('projClose').addEventListener('click', () => modal.classList.remove('active'));
+document.getElementById('projPrev').addEventListener('click', () => openModal((current - 1 + cards.length) % cards.length));
+document.getElementById('projNext').addEventListener('click', () => openModal((current + 1) % cards.length));
+modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); });
+document.addEventListener('keydown', (e) => {
+  if (!modal.classList.contains('active')) return;
+  if (e.key === 'Escape') modal.classList.remove('active');
+  if (e.key === 'ArrowLeft') openModal((current - 1 + cards.length) % cards.length);
+  if (e.key === 'ArrowRight') openModal((current + 1) % cards.length);
+});
+</script>
+{{ end }}

@@ -1,0 +1,134 @@
+{{ define "main" }}
+<div class="page-narrow">
+<h2>Publications</h2>
+
+<div class="pub" data-index="0">
+  <div class="pub-title"><strong>Valid Survey Simulations with Limited Human Data: The Roles of Prompting, Fine-Tuning, and Rectification</strong></div>
+  <div class="pub-authors"><span class="pub-me">S. Krsteski</span>, G. Russo, S. Chang, R. West, K. Gligorić</div>
+  <div class="pub-venue">ACL, 2026.</div>
+  <div class="pub-links">[<a href="https://arxiv.org/abs/2510.11408" target="_blank">pdf</a>]</div>
+</div>
+
+<div class="pub" data-index="1">
+  <div class="pub-title"><strong>Towards Open Foundation Language Model and Corpus for Macedonian: A Low-Resource Language</strong></div>
+  <div class="pub-authors"><span class="pub-me">S. Krsteski</span>, M. Tashkovska, B. Sazdov, H. Gjoreski, B. Gerazov</div>
+  <div class="pub-venue">ACL: BSNLP, 2025. <span class="pub-award">Best paper award.</span></div>
+  <div class="pub-links">[<a href="https://arxiv.org/pdf/2506.09560" target="_blank">pdf</a> | <a href="https://github.com/LVSTCK" target="_blank">code</a> | <a href="https://huggingface.co/LVSTCK" target="_blank">huggingface</a> | <a href="https://www.lvstck.org/" target="_blank">website</a>]</div>
+</div>
+
+<div class="pub" data-index="2">
+  <div class="pub-title"><strong>MMORE: Massive Multimodal Open RAG & Extraction</strong></div>
+  <div class="pub-authors">A. Sallinen, <span class="pub-me">S. Krsteski</span>, P. Teiletche, A. Marc-Antoine, B. Lecoeur, M. Zhang, F. Nemo, D. Kalajdzic, M. Meyer, Mary-Anne Hartley</div>
+  <div class="pub-venue">ICML: CODEML, 2025.</div>
+  <div class="pub-links">[<a href="https://openreview.net/forum?id=6j1HjfIdKn" target="_blank">pdf</a> | <a href="https://github.com/swiss-ai/mmore" target="_blank">code</a>]</div>
+</div>
+
+<div class="pub" data-index="3">
+  <div class="pub-title"><strong>Predictive models for health-related quality of life built on two telemonitoring datasets</strong></div>
+  <div class="pub-authors"><span class="pub-me">*S. Krsteski</span>, *M. Tashkovska, E. Kizhevska, J. Valič, H. Gjoreski, M. Luštrek</div>
+  <div class="pub-venue">PLOS ONE, 2024.</div>
+  <div class="pub-links">[<a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0313815" target="_blank">pdf</a>]</div>
+</div>
+
+<div class="pub" data-index="4">
+  <div class="pub-title"><strong>A System for Differentiation of Schizophrenia and Bipolar Disorder based on rsfMRI</strong></div>
+  <div class="pub-authors">D. Janeva, <span class="pub-me">S. Krsteski</span>, M. Tashkovska, N. Jovanovski, T. Kartalov, D. Taskovski, Z. Ivanovski, B. Gerazov</div>
+  <div class="pub-venue">IWSSIP, 2023.</div>
+  <div class="pub-links">[<a href="https://ieeexplore.ieee.org/abstract/document/10180306/" target="_blank">pdf</a>]</div>
+</div>
+
+<div class="pub" data-index="5">
+  <div class="pub-title"><strong>Prediction of Hospital Readmission using Federated Learning</strong></div>
+  <div class="pub-authors">B. Sazdov, M. Tashkovska, <span class="pub-me">S. Krsteski</span>, B. Jovanovski, S. Kalabakov, V. Rakovic, D. Denkovski, H. Gjoreski</div>
+  <div class="pub-venue">IWSSIP, 2023.</div>
+  <div class="pub-links">[<a href="https://ieeexplore.ieee.org/abstract/document/10180282" target="_blank">pdf</a>]</div>
+</div>
+
+<div class="pub" data-index="6">
+  <div class="pub-title"><strong>Intrusion Detection with Supervised and Unsupervised Learning using PyCaret over CICIDS 2017 dataset</strong></div>
+  <div class="pub-authors"><span class="pub-me">S. Krsteski</span>, M. Tashkovska, B. Sazdov, L. Radojichikj, A. Cholakoska, D. Efnusheva</div>
+  <div class="pub-venue">Springer Nature: CSOC, 2023.</div>
+  <div class="pub-links">[<a href="https://link.springer.com/chapter/10.1007/978-3-031-35314-7_12" target="_blank">pdf</a>]</div>
+</div>
+</div>
+
+<!-- Modal -->
+<div class="pub-modal" id="pubModal">
+  <div class="pub-modal-content">
+    <div class="pub-modal-header">
+      <button class="pub-modal-close" id="pubClose">&times;</button>
+    </div>
+    <h3 class="pub-modal-title" id="pubModalTitle"></h3>
+    <p class="pub-modal-authors" id="pubModalAuthors"></p>
+    <p class="pub-modal-venue" id="pubModalVenue"></p>
+    <p class="pub-modal-abstract" id="pubModalAbstract"></p>
+    <div class="pub-modal-links" id="pubModalLinks"></div>
+    <div class="pub-modal-nav">
+      <button class="pub-nav-btn prev" id="pubPrev"><span class="nav-arrow">&larr;</span><span class="nav-label" id="pubPrevLabel"></span></button>
+      <button class="pub-nav-btn next" id="pubNext"><span class="nav-arrow">&rarr;</span><span class="nav-label" id="pubNextLabel"></span></button>
+    </div>
+  </div>
+</div>
+
+<script>
+const abstracts = [
+  "Surveys provide valuable insights into public opinion and behavior, but their execution is costly and slow. Large language models (LLMs) have been proposed as a scalable, low-cost substitute for human respondents, but their outputs are often biased and yield invalid estimates. We study the interplay between synthesis methods that use LLMs to generate survey responses and rectification methods that debias population estimates, and explore how human responses are best allocated between them. Using two panel surveys with questions on nutrition, politics, and economics, we find that synthesis alone introduces substantial bias (24-86%), whereas combining it with rectification reduces bias below 5% and increases effective sample size by up to 14%. Overall, we challenge the common practice of using all human responses for fine-tuning, showing that under a fixed budget, allocating most to rectification results in far more effective estimation.",
+  "The increase in technological adoption worldwide comes with demands for novel tools to be used by the general population. Large Language Models (LLMs) provide a great opportunity in this respect, but their capabilities remain limited for low-resource languages, restricting applications in countries where such languages are spoken. We create several resources to facilitate the adoption of LLMs and to support research advancements for Macedonian. We collect the largest Macedonian corpus to date, consisting of 40GB of textual data and totaling 3.5B words. To support conversational applications, we collect a 106k-instance instruction dataset, carefully built to be culturally grounded. For evaluation, we construct a Macedonian evaluation suite covering seven benchmarks. Finally, we train domestic-yak, a state-of-the-art 8B-parameter model, on our curated datasets and evaluate it against eight baseline models using the newly constructed benchmark suite. Our model outperforms all existing models in the 8B parameter range across all benchmarks, and achieves performance comparable to models up to 10x larger. Furthermore, a qualitative analysis with native speakers reveals that our model is preferred over larger counterparts, receiving higher ratings for grammatical correctness and cultural appropriateness. All datasets, code, and model weights are openly released, setting a foundation for advancing LLMs in similarly underrepresented languages.",
+  "Multimodal documents are ubiquitous, yet building accurate RAG pipelines over them remains hard. We introduce MMORE, an open-source pipeline for multimodal document parsing and retrieval-augmented generation. MMORE achieves 2x the efficiency of IBM's Docling while maintaining competitive accuracy across diverse document types.",
+  "Congestive heart failure (CHF) is an incurable disease where a key objective of the treatment is to maintain the patient's quality of life (QoL) as much as possible. A model that predicts health-related QoL (HRQoL) based on physiological and ambient parameters can be used to monitor these parameters for the patient's benefit. Since it is difficult to predict how CHF progresses, in this study we tried to predict HRQoL for a particular patient as an individual, using two different datasets, collected while telemonitoring CHF patients. We used different types of imputation, classification models, number of classes and evaluation techniques for both datasets, but the main focus is on unifying the datasets, which allowed us to build cross-dataset models. The results showed that using general predictive models intended for previously unseen patients do not work well. Personalization significantly improves the prediction, both personalized models and personalized imputation, which is important due to many missing data in the datasets. However, this implies that applications using such predictive models would also need to collect some self-reported labels of HRQoL to be able to help patients effectively.",
+  "Schizophrenia and bipolar disorder are debilitating psychiatric illnesses that can be challenging to diagnose accurately. The similarities between the diseases make it difficult to differentiate between them using traditional diagnostic tools. Recently, resting-state functional magnetic resonance imaging (rsfMRI) has emerged as a promising tool for the diagnosis of psychiatric disorders. This paper presents several methods for differentiating schizophrenia and bipolar disorder based on features extracted from rsfMRI data. The system that achieved the best results, uses 1D Convolutional Neural Networks to analyze patterns of Intrinsic Connectivity time courses obtained from rsfMRI and potentially identify biomarkers that distinguish between the two disorders. We evaluate the system's performance on a large dataset of patients with schizophrenia and bipolar disorder and demonstrate that the system achieves a 0.7078 Area Under Curve (AUC) score in differentiating patients with these disorders. Our results suggest that rsfMRI-based classification systems have great potential for improving the accuracy of psychiatric diagnoses and may ultimately lead to more effective treatments for patients with this disorder.",
+  "Wearable devices have the ability to generate vast amounts of data that can be put to use in a multitude of applications, particularly in the field of e-health. However, the potential invasion of privacy that comes with utilizing personal data collected by these devices cannot be overlooked. Federated Learning (FL) is a promising solution to this issue that allows models to be trained in a decentralized manner while keeping user data on their own devices. This approach effectively minimizes the risk of privacy breaches and has the potential to be employed in a variety of applications where the protection of user data is of utmost importance. This paper focuses on the use of FL in predicting hospital readmission in 130-US diabetes hospitals for a data set collected over an 9-year period. The results suggest that FL can achieve comparable performance while maintaining privacy and diversity of data. This is an essential aspect of FL, as it enables continuous real-time learning without compromising privacy.",
+  "This paper presents the results of applying supervised and unsupervised machine learning techniques for intrusion detection on the CICIDS 2017 dataset using PyCaret. We compare multiple classification and clustering algorithms to identify the most effective approaches for detecting network intrusions. Our results demonstrate that ensemble methods achieve the highest detection rates while maintaining low false positive rates."
+];
+
+const pubs = document.querySelectorAll('.pub[data-index]');
+const modal = document.getElementById('pubModal');
+const modalTitle = document.getElementById('pubModalTitle');
+const modalAuthors = document.getElementById('pubModalAuthors');
+const modalVenue = document.getElementById('pubModalVenue');
+const modalAbstract = document.getElementById('pubModalAbstract');
+let current = 0;
+
+const modalLinks = document.getElementById('pubModalLinks');
+const prevLabel = document.getElementById('pubPrevLabel');
+const nextLabel = document.getElementById('pubNextLabel');
+
+function openModal(i) {
+  current = i;
+  const pub = pubs[i];
+  modalTitle.textContent = pub.querySelector('.pub-title strong').textContent;
+  modalAuthors.innerHTML = pub.querySelector('.pub-authors').innerHTML;
+  modalVenue.innerHTML = pub.querySelector('.pub-venue').innerHTML;
+  modalAbstract.textContent = abstracts[i];
+  modalLinks.innerHTML = pub.querySelector('.pub-links').innerHTML;
+  const prevIdx = (i - 1 + pubs.length) % pubs.length;
+  const nextIdx = (i + 1) % pubs.length;
+  prevLabel.textContent = pubs[prevIdx].querySelector('.pub-title strong').textContent;
+  nextLabel.textContent = pubs[nextIdx].querySelector('.pub-title strong').textContent;
+  modal.classList.add('active');
+}
+
+pubs.forEach(pub => {
+  const title = pub.querySelector('.pub-title');
+  const authors = pub.querySelector('.pub-authors');
+  [title, authors].forEach(el => {
+    if (!el) return;
+    el.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') return;
+      openModal(parseInt(pub.dataset.index));
+    });
+  });
+});
+
+document.getElementById('pubClose').addEventListener('click', () => modal.classList.remove('active'));
+document.getElementById('pubPrev').addEventListener('click', () => openModal((current - 1 + pubs.length) % pubs.length));
+document.getElementById('pubNext').addEventListener('click', () => openModal((current + 1) % pubs.length));
+modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); });
+document.addEventListener('keydown', (e) => {
+  if (!modal.classList.contains('active')) return;
+  if (e.key === 'Escape') modal.classList.remove('active');
+  if (e.key === 'ArrowLeft') openModal((current - 1 + pubs.length) % pubs.length);
+  if (e.key === 'ArrowRight') openModal((current + 1) % pubs.length);
+});
+</script>
+{{ end }}
